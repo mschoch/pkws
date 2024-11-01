@@ -11,6 +11,6 @@ vendor/**
 !vendor/manifest
 *.test
 tags
-fpserver
+/cmd/fpserver/fpserver
 
 dist/
