@@ -1,4 +1,4 @@
 # pkws
 
-a [PartyKit](https://www.partykit.io/) web serving library for Go
+a [PartyKit](https://www.partykit.io/)-like web serving library for Go
 
