@@ -27,6 +27,14 @@ func NewRoom(namespace string, name string, log *slog.Logger) *Room {
 	}
 }
 
+func (r *Room) Name() string {
+	return r.name
+}
+
+func (r *Room) Namespace() string {
+	return r.namespace
+}
+
 func (r *Room) AttachServer(s Server) {
 	single := NewSingle(s)
 	r.s = single
