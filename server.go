@@ -5,9 +5,11 @@ import (
 	"net/http"
 )
 
+type Env any
+
 // ServerConstructor is the function signature used to register
 // Server implementations for specific parties
-type ServerConstructor func(room *Room, log *slog.Logger) Server
+type ServerConstructor[Env any] func(env Env, room *Room, log *slog.Logger) Server
 
 // Server is the primary interface by which one implements the logic
 // backing the behavior of the room.

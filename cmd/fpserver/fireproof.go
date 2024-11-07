@@ -10,6 +10,8 @@ import (
 	"github.com/mschoch/pkws"
 )
 
+type fireproofContext struct{}
+
 // Fireproof is an implementation of the pkws.Server interface
 // that attempts the logic of the Fireproof partykit server
 // https://github.com/fireproof-storage/connect/blob/cab6c350129b6b713c2d459ec0991ee010cce910/src/partykit/server.ts
@@ -19,7 +21,7 @@ type Fireproof struct {
 	clockHead map[string]*CRDTEntry
 }
 
-func NewFireproof(room *pkws.Room, log *slog.Logger) pkws.Server {
+func NewFireproof(ctx *fireproofContext, room *pkws.Room, log *slog.Logger) pkws.Server {
 	return &Fireproof{
 		log:       log,
 		room:      room,

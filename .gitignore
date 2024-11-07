@@ -12,5 +12,6 @@ vendor/**
 *.test
 tags
 /cmd/fpserver/fpserver
+/cmd/fpclient/fpclient
 
 dist/

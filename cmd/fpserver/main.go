@@ -16,7 +16,7 @@ import (
 func main() {
 
 	var (
-		httpAddr = flag.String("http.addr", ":8178", "HTTP listen address")
+		httpAddr = flag.String("http.addr", ":8179", "HTTP listen address")
 	)
 	flag.Parse()
 
@@ -38,12 +38,13 @@ func main() {
 		errs <- fmt.Errorf("%s", <-c)
 	}()
 
-	// create the pkws service
-	svc := pkws.NewService(log)
-	// register the custom server for the fireproof party
-	svc.RegisterServer("fireproof", NewFireproof)
+	env := &fireproofContext{}
+
 	// create the party server
-	ps := pkws.NewPartyServer(svc, log)
+	ps := pkws.NewPartyServer(env, "/parties", log)
+
+	// register the custom server for the fireproof party
+	ps.RegisterServer("fireproof", NewFireproof)
 
 	srv := &http.Server{Addr: *httpAddr, Handler: ps}
 	go func() {

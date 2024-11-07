@@ -1,6 +1,10 @@
 package pkws
 
-import "github.com/gorilla/websocket"
+import (
+	"net/http"
+
+	"github.com/gorilla/websocket"
+)
 
 // Connection represents a websocket connection to a room
 type Connection struct {
@@ -37,4 +41,10 @@ func (c *Connection) Reader() {
 		}
 	}
 	c.ws.Close()
+}
+
+var upgrader = websocket.Upgrader{
+	ReadBufferSize:  1024,
+	WriteBufferSize: 1024,
+	CheckOrigin:     func(r *http.Request) bool { return true },
 }
